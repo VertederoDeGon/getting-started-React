@@ -24,6 +24,20 @@ export default function FollowMouse() {
     }
   }, [enabled])
 
+  //Dependencies: it will be executed when...
+  // [] -> the component is mounted (EXECUTED ONE)
+  // [enabled] -> enabled is changed or the component is mounted
+  // undefined -> the component renders
+
+  useEffect(() => {
+    //change body className SIDE EFFECT
+    document.body.classList.toggle('no-cursor', enabled)
+    return () => {
+      //cleanup method
+      document.body.classList.remove('no-cursor')
+    }
+  }, [enabled])
+
   // window.addEventListener() <- it will be executed for each rendering
   return (
     <>
@@ -37,7 +51,8 @@ export default function FollowMouse() {
           height: 40,
 
           borderRadius: '50%',
-          backgroundColor: '#09f',
+          border: '1px solid #f2f2f2',
+          backgroundColor: '#0088',
 
           opacity: 0.8,
           transform: `translate(${position.x}px, ${position.y}px)`,
