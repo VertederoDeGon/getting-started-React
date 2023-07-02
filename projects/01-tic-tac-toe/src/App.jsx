@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { Square } from './components/Square'
 import { WinnerModal } from './components/WinnerModal'
-import { checkWinnerFrom, checkEndGame } from './logic/board'
-import { saveGameToStorage, resetGameStorage } from './logic/storage'
+import { checkEndGame, checkWinnerFrom } from './logic/board'
+import { resetGameStorage, saveGameToStorage } from './logic/storage'
 
-import { TURNS } from './constants'
 import confetti from 'canvas-confetti'
+import { TURNS } from './constants'
 
-function App() {
-  console.time('🚀')
+function useBoard () {
   const [turn, setTurn] = useState(() => {
     //read data from localStorage is slow, is synchronous and blocking
     const turnFromStorage = localStorage.getItem('turn')
@@ -63,11 +62,20 @@ function App() {
     resetGameStorage()
   }
 
+  if (winner || winner === false) resetGameStorage()
+  return { board, turn, winner, updateBoard, resetGame }
+}
+
+function App () {
+  console.time('🚀')
+
+  const { board, turn, winner, resetGame, updateBoard } = useBoard()
+
   return (
-    <main className="board">
+    <main className='board'>
       <h1>Tic tac toe</h1>
       <button onClick={resetGame}>Reset game</button>
-      <section className="game">
+      <div className='game'>
         {board.map((square, index) => {
           return (
             <Square key={index} index={index} updateBoard={updateBoard}>
@@ -75,11 +83,11 @@ function App() {
             </Square>
           )
         })}
-      </section>
-      <section className="turn">
+      </div>
+      <div className='turn'>
         <Square isSelected={turn === TURNS.X}>{TURNS.X}</Square>
         <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
-      </section>
+      </div>
       <WinnerModal resetGame={resetGame} winner={winner} />
       {console.timeEnd('🚀', 'hola')}
     </main>

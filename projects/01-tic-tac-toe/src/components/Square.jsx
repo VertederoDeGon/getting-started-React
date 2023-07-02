@@ -4,7 +4,7 @@
   @param updateBoard Show the x or O on the table
   @param index Know which board is being clicked on
 */
-export function Square({ children, isSelected, updateBoard, index }) {
+export function Square ({ children, isSelected, updateBoard, index }) {
   const className = `square ${isSelected ? 'is-selected' : ''}`
 
   const handleClick = () => {

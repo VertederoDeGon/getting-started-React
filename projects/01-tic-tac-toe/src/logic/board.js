@@ -12,7 +12,7 @@ export const checkWinnerFrom = boardToCheck => {
       boardToCheck[a] === boardToCheck[b] &&
       boardToCheck[a] === boardToCheck[c]
     )
-      return boardToCheck[a] //return X or O
+      return boardToCheck[a] //return 'X' or 'O'
   }
 
   //if there is no winner

@@ -1,0 +1,12 @@
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  font-weight: 500;
+}
+
+.filters > div {
+  display: flex;
+  gap: 1rem;
+}

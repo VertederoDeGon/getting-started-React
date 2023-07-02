@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { TwitterFollowCard } from './TwitterFollowCard'
 
-export function App() {
+export function App () {
   const [childComp, setChildComp] = useState(0)
   const following = (isFollowing = true) => isFollowing
   const fTwitter = userName => `@${userName}`
@@ -12,27 +12,27 @@ export function App() {
     {
       userName: 'midudev',
       name: 'Miguel Ángel Durán',
-      isFollowing: true,
+      isFollowing: true
     },
     {
       userName: 'pheralb',
       name: 'Pablo H.',
-      isFollowing: false,
+      isFollowing: false
     },
     {
       userName: 'PacoHdezs',
       name: 'Paco Hdez',
-      isFollowing: false,
+      isFollowing: false
     },
     {
       userName: 'TMChein',
       name: 'Tomas',
-      isFollowing: true,
-    },
+      isFollowing: true
+    }
   ]
 
   return (
-    <section className="App">
+    <section className='App'>
       {user.map(({ userName, name, isFollowing }) => (
         <TwitterFollowCard
           key={userName}
